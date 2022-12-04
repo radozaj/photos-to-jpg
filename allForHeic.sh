@@ -23,14 +23,17 @@ if [ ! -d "$2" ] || [ ! -w "$2" ]; then
 fi
 TARGET_DIR="$2"
 
-SCRIPT_DIR=`dirname $0`
+SCRIPT_DIR=`dirname $0`/scripts
 
 DIR_CONVERTED="${TARGET_DIR}/1converted"
 mkdir "${DIR_CONVERTED}"
 ${SCRIPT_DIR}/convertPhotos.sh "${SOURCE_DIR}" "${DIR_CONVERTED}"
-${SCRIPT_DIR}/copyExif.sh "${SOURCE_DIR}" "${DIR_CONVERTED}"
 
-#DIR_RENAMED="${TARGET_DIR}/3renamed"
+DIR_COPIEDEXIF="${TARGET_DIR}/2copiedexif"
+cp -R "${DIR_CONVERTED}" "${DIR_COPIEDEXIF}"
+${SCRIPT_DIR}/copyExif.sh "${SOURCE_DIR}" "${DIR_CPIEDEXIF}"
+
+DIR_RENAMED="${TARGET_DIR}/3renamed"
 mkdir "${DIR_RENAMED}"
 ${SCRIPT_DIR}/renameByDate.sh "${DIR_CONVERTED}" "${DIR_RENAMED}"
 
