@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# usage
+USAGE='USAGE: ./renameByDate.sh old_folder new_folder'
+if [ $# -ne 2 ]; then
+	echo $USAGE
+	exit
+fi
+
+# source (old) folder must to be readable
+if [ ! -d "$1" ] || [ ! -r "$1" ]; then
+	echo 'ERROR: old_folder is not readable folder'
+	echo $USAGE
+	exit
+fi
+FOLDER="$1"
+
+# destination (new) folder must to be writeable
+if [ ! -d "$2" ] || [ ! -w "$2" ]; then
+	echo 'ERROR: new_folder is not writeble folder'
+	echo $USAGE
+	exit
+fi
+DEST="$2"
+
+# order old folder to new folder
+ls -1 "$FOLDER" | while read FILE; do
+	EXT="${FILE##*.}"
+	DATE=`stat "$FILE" | grep Modify:`
+	DATE=`expr substr "$DATE" 9 22`
+	cp "$FOLDER/$FILE" "$DEST/$DATE.$EXT"
+done
