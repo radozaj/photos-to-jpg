@@ -31,9 +31,9 @@ ${SCRIPT_DIR}/convertPhotos.sh "${SOURCE_DIR}" "${DIR_CONVERTED}"
 
 DIR_COPIEDEXIF="${TARGET_DIR}/2copiedexif"
 cp -R "${DIR_CONVERTED}" "${DIR_COPIEDEXIF}"
-${SCRIPT_DIR}/copyExif.sh "${SOURCE_DIR}" "${DIR_CPIEDEXIF}"
+${SCRIPT_DIR}/copyExif.sh "${SOURCE_DIR}" "${DIR_COPIEDEXIF}"
 
 DIR_RENAMED="${TARGET_DIR}/3renamed"
 mkdir "${DIR_RENAMED}"
-${SCRIPT_DIR}/renameByDate.sh "${DIR_CONVERTED}" "${DIR_RENAMED}"
+${SCRIPT_DIR}/renameByDate.sh "${DIR_COPIEDEXIF}" "${DIR_RENAMED}"
 
