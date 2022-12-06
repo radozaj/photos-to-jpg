@@ -26,11 +26,10 @@ TARGET_DIR="$2"
 
 
 ls -1 "$SOURCE_DIR" | while read FILE; do
-	EXT="${FILE##*.}"
+	EXT=`echo "${FILE##*.}" | tr '[:upper:]' '[:lower:]'`
 	if [[ "$EXT" =~ "heic"  ]]; then
 		NAME=`echo $FILE | sed -e 's/^\(.*\)\..*$/\1/g'`
 		# napr HEIC nekopiruje EXIF. Tak skopirujeme iba tie, co nemame
-		echo 		exiftool -wm cg -tagsfromfile "${SOURCE_DIR}/${FILE}" -all:all "${TARGET_DIR}/${NAME}.jpg"
 		exiftool -wm cg -tagsfromfile "${SOURCE_DIR}/${FILE}" -all:all "${TARGET_DIR}/${NAME}.jpg"
 		rm "${TARGET_DIR}/${NAME}.jpg_original"
 	fi
