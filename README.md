@@ -8,7 +8,7 @@ Install prerequisites
 
 ````bash
 sudo apt install gimp
-cp gimp-script/gimpSmaller-photos.scm ~/.config/GIMP/2.10/scripts
+cp gimp-script/Smaller-photos.scm ~/.config/GIMP/2.10/scripts
 sudo apt install exiftool
 ````
 
