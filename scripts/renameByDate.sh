@@ -31,6 +31,7 @@ ls -1 "$SOURCE_DIR" | while read FILE; do
 	DATE=`echo $DATE | sed -e 's/^\([0-9]*\):\([0-9]*\):\(.*\)$/\1-\2-\3/g'`
 	if [ -z "${DATE}" ]; then
 		echo "I can not read date from metadata of $FILE"
+		cp "${SOURCE_DIR}/${FILE}" "${TARGET_DIR}/${FILE}"
 		continue
 	fi
 	DATE=`date '+%Y-%m-%d_%H-%M-%S' -d "$DATE"`
