@@ -29,8 +29,9 @@ ls -1 "$SOURCE_DIR" | while read FILE; do
 	EXT=`echo "${FILE##*.}" | tr '[:upper:]' '[:lower:]'`
 	if [[ "$EXT" =~ "heic" ]] || [[ "$EXT" =~ "jpg" ]] || [[ "$EXT" =~ "jpeg" ]]; then
 		NAME=`echo $FILE | sed -e 's/^\(.*\)\..*$/\1/g'`
+		echo ">> copy exif to: ${NAME}.jpg"
 		# from HEIC or JPEG copy EXIF
 		exiftool -wm cg -tagsfromfile "${SOURCE_DIR}/${FILE}" -all:all "${TARGET_DIR}/${NAME}.jpg"
-		rm "${TARGET_DIR}/${NAME}.jpg_original"
+		rm -f "${TARGET_DIR}/${NAME}.jpg_original"
 	fi
 done
