@@ -1,5 +1,5 @@
 #!/bin/bash
-# cp Smaller-photos.scm ~/.config/GIMP/2.10/scripts
+# ln -s Smaller-photos.scm ~/.config/GIMP/3.0/scripts/Smaller-photos.scm
 
 # usage
 USAGE='USAGE: ./convertPhotos.sh source_folder target_folder'
@@ -24,4 +24,4 @@ if [ ! -d "$2" ] || [ ! -w "$2" ]; then
 fi
 TARGET_DIR=`echo "$2" | sed -e "s/\/*$//"`
 
-gimp -i -b "(Smaller-photos \"${SOURCE_DIR}\" 1 \"${TARGET_DIR}\" 1 3648)" -b '(gimp-quit 0)'
+gimp-console-3.0 -i --batch-interpreter=plug-in-script-fu-eval -b "(Smaller-photos \"${SOURCE_DIR}\" 1 \"${TARGET_DIR}\" 1 3648)" -b '(gimp-quit 0)'
