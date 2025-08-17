@@ -86,7 +86,7 @@
 ;; -------------------------------------------------------------------
 (define (Smaller-photos folder-source different-target folder-target scale-photos longer-side)
   (script-fu-use-v3)
-  (gimp-message (string-append ">> Spúšťam Smaller-photos"))
+  (gimp-message (string-append ">> Running Smaller-photos"))
 
   (let*
     (
